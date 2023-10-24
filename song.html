@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Song Finder</title>
+</head>
+<body>
+   <h1>Song Finder</h1>
+   <form method="POST" action="/">
+      <input type="text" name="lyrics" placeholder="Enter lyrics here...">
+      <input type="submit" value="Search">
+   </form>
+
+
+   {% if message %}
+    <h2>{{ message }}</h2>
+    {% endif %}
+
+    {% if songs %}
+    <table>
+        <tr>
+            <th>Song Title</th>
+            <th>Artist</th>
+            <th>Preview</th>
+        </tr>
+        {% for song in songs %}
+        <tr>
+            <td><a href="#" class="song-title" data-preview="{{ song['preview_url'] }}">{{ song['name'] }}</a></td>
+            <td>{{ song['artist'] }}</td>
+            <td>
+                <button class="play-preview">Play</button>
+                <button class="pause-preview" style="display:none">Pause</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <script>
+        const songTitles = document.querySelectorAll('.song-title');
+        const playButtons = document.querySelectorAll('.play-preview');
+        const pauseButtons = document.querySelectorAll('.pause-preview');
+
+        for(let i=0; i<songTitles.length; i++){
+            const songTitle = songTitles[i];
+            const playButton = playButtons[i];
+            const pauseButton = pauseButtons[i];
+            const previewUrl = songTitle.dataset.preview;
+            let audio;
+
+            playButton.addEventListener('click', function(){
+                if (audio && !audio.paused) {
+                    audio.pause();
+                    pauseButton.style.display = "none";
+                    playButton.style.display = "block";
+                } else {
+                    if (audio) {
+                        audio.play();
+                    } else {
+                        audio = new Audio(previewUrl);
+                        audio.play();
+                    }
+                    playButton.style.display = "none";
+                    pauseButton.style.display = "block";
+                }
+            });
+
+            pauseButton.addEventListener('click', function() {
+                audio.pause();
+                pauseButton.style.display = "none";
+                playButton.style.display = "block";
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
