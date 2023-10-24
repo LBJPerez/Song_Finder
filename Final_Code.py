@@ -4,7 +4,7 @@ import json
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-app = Flask(__name__, template_folder='/Users/luisjimenez/Desktop/Python_Projects/IST_Project')
+app = Flask(__name__, template_folder='/Users/luisjimenez/Desktop/Python_Projects/Song_Finder')
 
 client_credentials_manager = SpotifyClientCredentials(client_id='3983eacffb104766ab7c877180c2d32c', client_secret='bd526b40db8d48c78d7e8690fe5f498c')
 spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
