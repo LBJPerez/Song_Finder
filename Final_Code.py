@@ -4,9 +4,9 @@ import json
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-app = Flask(__name__, template_folder='/Users/luisjimenez/Desktop/Python_Projects/Song_Finder')
+app = Flask(__name__, template_folder= 'ADD FOLDER LOCATION/PATH HERE')
 
-client_credentials_manager = SpotifyClientCredentials(client_id='3983eacffb104766ab7c877180c2d32c', client_secret='bd526b40db8d48c78d7e8690fe5f498c')
+client_credentials_manager = SpotifyClientCredentials(client_id='ADD SPOTIFY CLIENT ID CODE HERE', client_secret='ADD SPOTIFY CLIENT SECRECT CODE HERE')
 spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 @app.route("/", methods=["GET", "POST"])
@@ -16,7 +16,7 @@ def home():
         lyrics = request.form["lyrics"]
 
         headers = {
-            "Authorization": "Bearer cDdPbXXAzg-rpuNuJ_YYwoRsGBB66OjQr8CsokDYtuXQTOjXOcmbOWdM6_PmfWsv"
+            "Authorization": "ADD GENIUS API CODE HERE"
         }
         params = {
             "q": lyrics
